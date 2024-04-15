@@ -22,7 +22,7 @@ const TimeCard : React.FC<TimeCardProps> = (props) => {
         }, 1000);
     
         return () => clearInterval(intervalId);
-      }, []);
+      }, [type,time]);
 
     return (
         <TimeCardWrapper>
