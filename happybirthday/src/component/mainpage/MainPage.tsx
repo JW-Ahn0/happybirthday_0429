@@ -13,11 +13,13 @@ const MainPage = () => {
     return (
         <MainPageWrapper>
             <TopImgSection/>
-            <MiddleImgSection/>
-            <MainTitle dDay={dday}/>
-            <DdayCard dDay={dday}/>
-            <ButtonCard/>
-            <BottomImgSection/>
+            <MiddleImgSection/>    
+            <ContentWrapper>
+                <MainTitle dDay={dday}/>
+                <DdayCard dDay={dday}/>
+                <ButtonCard/>                 
+            </ContentWrapper>   
+            <BottomImgSection/>            
         </MainPageWrapper>
     )
 }
@@ -29,4 +31,10 @@ width: 100vw;
 height: 100vh;
 background: #FF8FA0;
 overflow: hidden;
+`
+const ContentWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
 `
