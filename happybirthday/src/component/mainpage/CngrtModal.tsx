@@ -21,6 +21,7 @@ const CngrtModal = ({ modalOpen, setModalOpen }: modalProps) => {
             content
         };
         const jsonData = JSON.stringify(data);
+        console.log(jsonData);
         alert("아직 개발 중인 기능이예요! 그래도 작성해주셔서 감사해요!!");
     }   
 
