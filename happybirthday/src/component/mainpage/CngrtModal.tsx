@@ -1,6 +1,5 @@
 import Modal from 'react-modal';
 import styled from '@emotion/styled';
-import { useState } from 'react';
 
 interface Props {
     modalOpen: boolean;
