@@ -1,12 +1,24 @@
 import styled from '@emotion/styled'
+import { useState } from 'react';
+import CngrtModal from './CngrtModal'; // 모달 컴포넌트 import
 
 const CngrtMsgButton = () => {
-
+    const [modalOpen, setModalOpen] = useState<boolean>(false); // 모달 상태 선언 및 초기화
     const Msg = "축하 메시지\n작성하기"
+
+    const openModal = () => {
+        setModalOpen(true); // 모달 열기
+
+    };
+
     return (
-        <CngrtMsgButtonWrapper>
-            {Msg}
-        </CngrtMsgButtonWrapper>
+        <>
+            <CngrtMsgButtonWrapper onClick={openModal}>
+                {Msg}
+            </CngrtMsgButtonWrapper>
+            <CngrtModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+        </>
+
     )
 }
 
