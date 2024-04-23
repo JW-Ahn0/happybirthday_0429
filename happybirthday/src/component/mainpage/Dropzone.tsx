@@ -1,6 +1,6 @@
 import {useDropzone} from 'react-dropzone';
 import styled from '@emotion/styled';
-import { SetStateAction, useState } from 'react';
+import {useState } from 'react';
 import AlertModal from './AlertModal';
 
 const getColor = (props:any) => {
@@ -38,7 +38,6 @@ function StyledDropzone(props:any) {
   
   const {
     acceptedFiles,
-    fileRejections,
     getRootProps,
     getInputProps,
     isFocused,
