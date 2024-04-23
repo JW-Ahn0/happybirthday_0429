@@ -2,25 +2,30 @@ import styled from '@emotion/styled'
 import { useState } from 'react';
 import CngrtModal from './CngrtModal'; // 모달 컴포넌트 import
 import MusicPlayer from './MusicPlayer';
+import AlertModal from './AlertModal';
 
 const CngrtMsgButton = () => {
     const [modalOpen, setModalOpen] = useState<boolean>(false); // 모달 상태 선언 및 초기화
     const [musicPlaying, setMusicPlaying] = useState<boolean>(false); // 노래 재생 상태 선언 및 초기화
+    const [alertModalOpen, setAlertModalOpen] = useState(false); // 알림 모달 상태 선언 및 초기화
     const Msg = "축하 메시지\n작성하기"
 
     const openModal = () => {
         setModalOpen(true); // 모달 열기
         setMusicPlaying(true); // 노래 재생 시작
-
     };
-
+    const closeCngrtModal = () => {
+        setModalOpen(false); // 모달 닫기
+        setAlertModalOpen(true); // 알림 모달 열기
+    }
     return (
         <>
             <CngrtMsgButtonWrapper onClick={openModal}>
                 {Msg}
             </CngrtMsgButtonWrapper>
             {musicPlaying && <MusicPlayer src="/Root.mp3" />} {/* 노래 재생 상태일 때 MusicPlayer 컴포넌트 렌더링 */}
-            <CngrtModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
+            <CngrtModal modalOpen={modalOpen} setModalOpen={setModalOpen} closeCngrtModal={closeCngrtModal} />
+            <AlertModal msg="작성해주셔서 감사합니다." alertModalOpen={alertModalOpen} setAlertModalOpen={setAlertModalOpen} />
         </>
 
     )

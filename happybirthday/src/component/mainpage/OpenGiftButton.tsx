@@ -1,11 +1,26 @@
 import styled from '@emotion/styled'
+import { useState } from 'react';
+import AlertModal from './AlertModal';
 
-const OpenGiftButton = () => {
+interface OpenGiftButtonProps {
+    isBirthdayAfter: boolean;
+  }
+  
+const OpenGiftButton: React.FC<OpenGiftButtonProps> = ({ isBirthdayAfter }) => {
     const Msg = "선물 개봉하기"
+    
+    const [alertModalOpen, setAlertModalOpen] = useState(false); // 알림 모달 상태 선언 및 초기화
+    const openModal = () => {
+        setAlertModalOpen(true); // 모달 열기
+    };
     return (
-        <OpenGiftButtonWrapper>
-            {Msg}
-        </OpenGiftButtonWrapper>
+        <>
+            <OpenGiftButtonWrapper onClick={openModal}>
+                {Msg}
+            </OpenGiftButtonWrapper>
+            {!isBirthdayAfter && <AlertModal msg="아직 시간이 지나지 않아 기다려주세요 " alertModalOpen={alertModalOpen} setAlertModalOpen={setAlertModalOpen} /> }       
+        </>
+
     )
 }
 

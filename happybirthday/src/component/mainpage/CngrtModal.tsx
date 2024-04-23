@@ -1,13 +1,28 @@
 import Modal from 'react-modal';
 import styled from '@emotion/styled';
+
 import { useState } from 'react';
+
+import { ref, set } from "firebase/database";
+import { database } from '../../firebase';
+import { v4 } from 'uuid';
+
+function setData(title :string, author:string, content:string) {
+    const uuid = v4();
+    set(ref(database, 'CngrtMsg/' +uuid), {
+        title: title,
+        author: author,
+        content : content,
+    });
+}
 
 interface modalProps {
     modalOpen: boolean;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    closeCngrtModal : () => void;
 }
 
-const CngrtModal = ({ modalOpen, setModalOpen }: modalProps) => {
+const CngrtModal = ({ modalOpen, setModalOpen,closeCngrtModal }: modalProps) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [content, setContent] = useState('');
@@ -15,16 +30,14 @@ const CngrtModal = ({ modalOpen, setModalOpen }: modalProps) => {
     const cngrtModalTitle = "축하 메시지 작성"
 
     function handleSubmit() {
-        const data = {
-            title,
-            author,
-            content
-        };
-        const jsonData = JSON.stringify(data);
-        console.log(jsonData);
-        alert("아직 개발 중인 기능이예요! 그래도 작성해주셔서 감사해요!!");
+        setData(title, author, content);
+        closeCngrtModal();
     }   
-
+    function handleAfterOpenFunc(){
+        setTitle('');
+        setAuthor('');
+        setContent('');
+    }
     function closeModal(){
         setModalOpen(false)
     }
@@ -36,6 +49,7 @@ const CngrtModal = ({ modalOpen, setModalOpen }: modalProps) => {
             onRequestClose={closeModal}
             shouldCloseOnOverlayClick={true} // 모달 바깥 영역 클릭 시 닫힘 설정
             ariaHideApp={false}
+            onAfterOpen={handleAfterOpenFunc}
         >
             <ModalContent>
                 <h2>{cngrtModalTitle}</h2>
@@ -118,6 +132,7 @@ const ModalContent = styled.div`
 }
 
 .modal-buttons{
+    margin-top: 20px;
     display: flex;
     justify-content: end;
     gap: 10px;

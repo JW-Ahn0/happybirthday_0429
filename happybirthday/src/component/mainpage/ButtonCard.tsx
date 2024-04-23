@@ -5,7 +5,7 @@ const ButtonCard = () =>{
     return (
         <ButtonCardWrapper>
             <CngrtMsgButton/>
-            <OpenGiftButton/>
+            <OpenGiftButton isBirthdayAfter={false} />
         </ButtonCardWrapper>
         
     )
