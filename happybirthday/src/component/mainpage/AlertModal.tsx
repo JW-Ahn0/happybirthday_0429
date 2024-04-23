@@ -72,7 +72,7 @@ const customStyles = {
         backgroundColor: 'white',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         width: '20%', // 가로 크기 조정
-        height: '15%', // 세로 크기 조정
+        height: 'auto%', // 세로 크기 조정
         overflow:'hidden',
     },
     overlay: {

@@ -18,7 +18,7 @@ const OpenGiftButton: React.FC<OpenGiftButtonProps> = ({ isBirthdayAfter }) => {
             <OpenGiftButtonWrapper onClick={openModal}>
                 {Msg}
             </OpenGiftButtonWrapper>
-            {!isBirthdayAfter && <AlertModal msg="아직 시간이 지나지 않아 기다려주세요 " alertModalOpen={alertModalOpen} setAlertModalOpen={setAlertModalOpen} /> }       
+            {!isBirthdayAfter && <AlertModal msg="생일이 아직 아니예요!" alertModalOpen={alertModalOpen} setAlertModalOpen={setAlertModalOpen} /> }       
         </>
 
     )

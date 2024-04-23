@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { ref, set } from "firebase/database";
 import { database } from '../../firebase';
 import { v4 } from 'uuid';
+import Test from './Dropzone';
 
 function setData(title :string, author:string, content:string) {
     const uuid = v4();
@@ -78,6 +79,7 @@ const CngrtModal = ({ modalOpen, setModalOpen,closeCngrtModal }: modalProps) => 
                         onChange={(e) => setContent(e.target.value)}
                     ></textarea>
                 </div>
+                <Test></Test>
                 <div className='modal-buttons'>
                     <button className='modal-close' onClick={closeModal}>닫기</button>
                     <button className='modal-button' onClick={handleSubmit}>제출</button>
@@ -151,7 +153,7 @@ const customStyles = {
         backgroundColor: 'white',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         width: '40%', // 가로 크기 조정
-        height: '45%', // 세로 크기 조정
+        height: 'auto', // 세로 크기 조정
         overflow:'hidden',
     },
     overlay: {
