@@ -2,6 +2,8 @@ import {useDropzone} from 'react-dropzone';
 import styled from '@emotion/styled';
 import {useState } from 'react';
 import AlertModal from './AlertModal';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {storage} from '../../firebase';
 
 const getColor = (props:any) => {
   if (props.isDragAccept) {
@@ -32,8 +34,10 @@ const Container = styled.div`
   transition: border .24s ease-in-out;
   
 `;
-
-function StyledDropzone(props:any) {
+interface dropzoneProps {
+  uuid : string;
+}
+const StyledDropzone = ({uuid} :dropzoneProps) => {
   const [showAlert, setShowAlert] = useState(false); // 경고창을 표시할지 여부를 관리하는 상태 추가
   
   const {
@@ -46,7 +50,8 @@ function StyledDropzone(props:any) {
   } = useDropzone(
     {accept: {'image/*': []},
     maxFiles:1,
-    onDropRejected:onDropRejected
+    onDropRejected:onDropRejected,
+    onDropAccepted:uploadFile
     });
 
   const acceptedFileItems = acceptedFiles.map(file => (
@@ -57,7 +62,12 @@ function StyledDropzone(props:any) {
   function onDropRejected() {
     setShowAlert(true); // 파일 거부 시 경고창을 표시
   }
-
+  async function uploadFile() {
+    const uploaded_file = await uploadBytes(
+    ref(storage,`images/${uuid}`),acceptedFiles[0]);
+    const file_url = await getDownloadURL(ref(storage,`images/${uuid}`));
+    console.log(file_url);
+  }
   return (
     <div className="container">
       <Container {...getRootProps({isFocused, isDragAccept, isDragReject})}>

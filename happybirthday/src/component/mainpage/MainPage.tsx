@@ -5,21 +5,33 @@ import ButtonCard from "./ButtonCard";
 import TopImgSection from "./TopImgSection";
 import MiddleImgSection from "./MiddleImgSection";
 import BottomImgSection from "./BottomImgSection";
+import { useState } from "react";
 
 const MainPage = () => {
+    const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
     const dday = '2024-04-29'
+    const password = '5670'
     
-
     return (
         <MainPageWrapper>
-            <TopImgSection/>
-            <MiddleImgSection/>    
-            <ContentWrapper>
-                <MainTitle dDay={dday}/>
-                <DdayCard dDay={dday}/>
-                <ButtonCard/>                 
-            </ContentWrapper>   
-            <BottomImgSection/>            
+            {!isPasswordConfirm &&
+            <>
+                <TopImgSection/>
+                <MiddleImgSection/>    
+                <ContentWrapper>
+                    <MainTitle dDay={dday}/>
+                    <DdayCard dDay={dday}/>
+                    <ButtonCard dDay={dday} password ={password} setIsPasswordConfirm={setIsPasswordConfirm} />                 
+                </ContentWrapper>   
+                <BottomImgSection/>
+            </>
+            }
+            {
+                isPasswordConfirm &&
+                <div>
+                    <h1>축하합니다! 생일을 맞이하셨습니다!</h1>
+                </div>
+            }            
         </MainPageWrapper>
     )
 }

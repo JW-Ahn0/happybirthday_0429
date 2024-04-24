@@ -6,10 +6,9 @@ import { useState } from 'react';
 import { ref, set } from "firebase/database";
 import { database } from '../../firebase';
 import { v4 } from 'uuid';
-import Test from './Dropzone';
+import Dropzone from './Dropzone';
 
-function setData(title :string, author:string, content:string) {
-    const uuid = v4();
+function setData(title :string, author:string, content:string ,uuid:string) {
     set(ref(database, 'CngrtMsg/' +uuid), {
         title: title,
         author: author,
@@ -21,17 +20,18 @@ interface modalProps {
     modalOpen: boolean;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     closeCngrtModal : () => void;
+    uuid : string;
+    setUuid:React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CngrtModal = ({ modalOpen, setModalOpen,closeCngrtModal }: modalProps) => {
+const CngrtModal = ({ modalOpen, setModalOpen,closeCngrtModal,uuid,setUuid }: modalProps) => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [content, setContent] = useState('');
-        
-    const cngrtModalTitle = "축하 메시지 작성"
 
+    const cngrtModalTitle = "축하 메시지 작성"
     function handleSubmit() {
-        setData(title, author, content);
+        setData(title, author, content,uuid);
         closeCngrtModal();
     }   
     function handleAfterOpenFunc(){
@@ -79,7 +79,7 @@ const CngrtModal = ({ modalOpen, setModalOpen,closeCngrtModal }: modalProps) => 
                         onChange={(e) => setContent(e.target.value)}
                     ></textarea>
                 </div>
-                <Test></Test>
+                <Dropzone uuid={uuid} ></Dropzone>
                 <div className='modal-buttons'>
                     <button className='modal-close' onClick={closeModal}>닫기</button>
                     <button className='modal-button' onClick={handleSubmit}>제출</button>
