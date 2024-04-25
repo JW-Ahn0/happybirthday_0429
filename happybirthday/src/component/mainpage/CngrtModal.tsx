@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 import { ref, set } from "firebase/database";
 import { database } from '../../firebase';
-import { v4 } from 'uuid';
 import Dropzone from './Dropzone';
 
 function setData(title :string, author:string, content:string ,uuid:string) {

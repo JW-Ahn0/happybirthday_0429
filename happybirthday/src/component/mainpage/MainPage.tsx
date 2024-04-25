@@ -6,10 +6,11 @@ import TopImgSection from "./TopImgSection";
 import MiddleImgSection from "./MiddleImgSection";
 import BottomImgSection from "./BottomImgSection";
 import { useState } from "react";
+import HappyBirthdayPage from "../happybirthdaymainpage/HappyBirthdayPage";
 
 const MainPage = () => {
     const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-    const dday = '2024-04-29'
+    const dday = '2023-04-29'
     const password = '5670'
     
     return (
@@ -26,11 +27,8 @@ const MainPage = () => {
                 <BottomImgSection/>
             </>
             }
-            {
-                isPasswordConfirm &&
-                <div>
-                    <h1>축하합니다! 생일을 맞이하셨습니다!</h1>
-                </div>
+            {isPasswordConfirm &&
+                <HappyBirthdayPage/>
             }            
         </MainPageWrapper>
     )

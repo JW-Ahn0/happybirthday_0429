@@ -63,8 +63,7 @@ const StyledDropzone = ({uuid} :dropzoneProps) => {
     setShowAlert(true); // 파일 거부 시 경고창을 표시
   }
   async function uploadFile() {
-    const uploaded_file = await uploadBytes(
-    ref(storage,`images/${uuid}`),acceptedFiles[0]);
+    await uploadBytes(ref(storage,`images/${uuid}`),acceptedFiles[0]);
     const file_url = await getDownloadURL(ref(storage,`images/${uuid}`));
     console.log(file_url);
   }
