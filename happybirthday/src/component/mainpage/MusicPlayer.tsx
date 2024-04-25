@@ -4,6 +4,7 @@ const MusicPlayer: React.FC<{src :string}> = ({ src }) =>  {
     useEffect(() => {
         const audio = new Audio(src);
         audio.loop = true;
+        audio.volume = 0.4;
         let playPromise = audio.play();
         //https://developer.chrome.com/blog/play-request-was-interrupted?hl=ko
         //.play가 안될 수 도 있기 때문에 추가

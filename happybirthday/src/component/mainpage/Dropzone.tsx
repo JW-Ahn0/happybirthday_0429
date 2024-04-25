@@ -36,10 +36,10 @@ const Container = styled.div`
 `;
 interface dropzoneProps {
   uuid : string;
+  setImgUrlData : (imgUrl: string, uuid: string) => void;
 }
-const StyledDropzone = ({uuid} :dropzoneProps) => {
+const StyledDropzone = ({uuid,setImgUrlData} :dropzoneProps) => {
   const [showAlert, setShowAlert] = useState(false); // 경고창을 표시할지 여부를 관리하는 상태 추가
-  
   const {
     acceptedFiles,
     getRootProps,
@@ -62,10 +62,12 @@ const StyledDropzone = ({uuid} :dropzoneProps) => {
   function onDropRejected() {
     setShowAlert(true); // 파일 거부 시 경고창을 표시
   }
-  async function uploadFile() {
+  async function uploadFile(acceptedFiles: Array<File>) {
     await uploadBytes(ref(storage,`images/${uuid}`),acceptedFiles[0]);
     const file_url = await getDownloadURL(ref(storage,`images/${uuid}`));
+    console.log(uuid);
     console.log(file_url);
+    setImgUrlData(uuid,file_url);
   }
   return (
     <div className="container">

@@ -3,18 +3,22 @@ import styled from '@emotion/styled';
 
 import { useState } from 'react';
 
-import { ref, set } from "firebase/database";
+import { ref, update  } from "firebase/database";
 import { database } from '../../firebase';
 import Dropzone from './Dropzone';
 
 function setData(title :string, author:string, content:string ,uuid:string) {
-    set(ref(database, 'CngrtMsg/' +uuid), {
+    update(ref(database, 'CngrtMsg/' +uuid), {
         title: title,
         author: author,
         content : content,
     });
 }
-
+function setImgUrlData(uuid:string, imgUrl:string) {
+    update(ref(database, 'CngrtMsg/' +uuid), {
+        imgUrl: imgUrl,
+    });
+}
 interface modalProps {
     modalOpen: boolean;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,7 +31,6 @@ const CngrtModal = ({ modalOpen, setModalOpen,closeCngrtModal,uuid,setUuid }: mo
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [content, setContent] = useState('');
-
     const cngrtModalTitle = "축하 메시지 작성"
     function handleSubmit() {
         setData(title, author, content,uuid);
@@ -78,7 +81,7 @@ const CngrtModal = ({ modalOpen, setModalOpen,closeCngrtModal,uuid,setUuid }: mo
                         onChange={(e) => setContent(e.target.value)}
                     ></textarea>
                 </div>
-                <Dropzone uuid={uuid} ></Dropzone>
+                <Dropzone uuid={uuid} setImgUrlData={setImgUrlData} ></Dropzone>
                 <div className='modal-buttons'>
                     <button className='modal-close' onClick={closeModal}>닫기</button>
                     <button className='modal-button' onClick={handleSubmit}>제출</button>

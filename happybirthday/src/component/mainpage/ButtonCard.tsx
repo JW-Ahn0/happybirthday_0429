@@ -4,14 +4,14 @@ import CngrtMsgButton from "./CngrtMsgButton";
 import {OpenGiftButtonProps } from "../../types/mainpage/DdayCardProps";
 import dayjs from "dayjs";
 
-const ButtonCard :React.FC<OpenGiftButtonProps> = ({dDay,password,setIsPasswordConfirm}) => {
+const ButtonCard :React.FC<OpenGiftButtonProps> = ({dDay,password,setIsPasswordConfirm,setMusicPlaying}) => {
     const dDayDate = dayjs(dDay);
     const today = dayjs();
     const isBirthdayAfter = dDayDate.diff(today, 'second') > 0 ? false : true;  
     return (
         <ButtonCardWrapper>
-            <CngrtMsgButton/>
-            <OpenGiftButton isBirthdayAfter={isBirthdayAfter} password={password} setIsPasswordConfirm={setIsPasswordConfirm}/>
+            <CngrtMsgButton setMusicPlaying={setMusicPlaying} />
+            <OpenGiftButton isBirthdayAfter={isBirthdayAfter} password={password} setIsPasswordConfirm={setIsPasswordConfirm} setMusicPlaying={setMusicPlaying} />
         </ButtonCardWrapper>
         
     )
