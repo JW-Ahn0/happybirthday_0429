@@ -11,7 +11,7 @@ import MusicPlayer from "./MusicPlayer";
 
 const MainPage = () => {
     const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
-    const dday = '2023-04-29'
+    const dday = '2024-04-29'
     const password = '5670'
     const [musicPlaying, setMusicPlaying] = useState<boolean>(false); // 노래 재생 상태 선언 및 초기화
 
