@@ -3,7 +3,7 @@ const VideoPage = () => {
     return (
         <VideoWrapper>
             <video autoPlay loop>
-                <source src="/70프로.mp4" type="video/mp4" />
+                <source src="/100.mp4" type="video/mp4" />
             </video>
         </VideoWrapper>
     )
