@@ -18,6 +18,8 @@ const BirthdayPageTabWrapper = styled.div`
     justify-content: center;
     margin-bottom: 20px;
     gap: 50px;
+    position: relative; /* or absolute, fixed, sticky */
+    z-index: 2;
 `;
 
 const Tab = styled.button<{ active: boolean }>`
