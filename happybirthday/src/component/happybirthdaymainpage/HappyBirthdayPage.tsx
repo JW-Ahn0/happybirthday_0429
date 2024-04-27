@@ -45,7 +45,7 @@ const HappyBirthdayPage:React.FC<HappyBirthdayPageProps> = ({setMusicPlaying}) =
             <div className="birthday-card-container">
                 {activeTab === 1 && data.map((item, index) => <HappyBirthdayCard key={index} data={item} />)}
                 {activeTab === 1 && data.length ===0 && <h1 className="no-msg">축하록이 아직 작성되지 않았습니다. </h1>}
-                {activeTab === 2 && <div></div>}
+                {activeTab === 2 && <LetterPage/>}
                 {activeTab === 3 && <VideoPage/>}
             </div>
             
@@ -90,7 +90,8 @@ background-repeat : repeat;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
+    padding-bottom: 50px;
 }
 
 .no-msg{
