@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useState } from 'react';
-import AlertModal from './AlertModal';
+//import AlertModal from './AlertModal';
 import PasswordModal from './PasswordModal';
 
 interface OpenGiftButtonProps {
@@ -23,8 +23,10 @@ const OpenGiftButton: React.FC<OpenGiftButtonProps> = ({ isBirthdayAfter,passwor
             <OpenGiftButtonWrapper onClick={openModal}>
                 {Msg}
             </OpenGiftButtonWrapper>
-            {!isBirthdayAfter && <AlertModal msg="생일이 아직 아니예요!" alertModalOpen={alertModalOpen} setAlertModalOpen={setAlertModalOpen} /> }  
-            {isBirthdayAfter && <PasswordModal msg="패스워드를 입력하세요" password={password} passwordModalOpen={alertModalOpen} setPasswordModalOpen={setAlertModalOpen} setIsPasswordConfirm={setIsPasswordConfirm} />  } 
+            <PasswordModal msg="패스워드를 입력하세요" password={password} passwordModalOpen={alertModalOpen} setPasswordModalOpen={setAlertModalOpen} setIsPasswordConfirm={setIsPasswordConfirm} />
+            
+            {/*!isBirthdayAfter && <AlertModal msg="생일이 아직 아니예요!" alertModalOpen={alertModalOpen} setAlertModalOpen={setAlertModalOpen} /> */}  
+            {/*isBirthdayAfter &&   */} 
         </>
 
     )
