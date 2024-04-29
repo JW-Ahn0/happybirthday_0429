@@ -7,9 +7,8 @@ const MainTitle:React.FC<DdayCardProps> = ({dDay,isMobile}) => {
     const dDayDate = dayjs(dDay);
     const today = dayjs();
     const beforeDdayMeg = "은하계 최고 미녀 소현이의 생일까지 단";
-    const afterDdayMeg = isMobile===true? "은하계 최고 미녀 소현이의\n 생일으로부터 벌써": "은하계 최고 미녀 소현이의 생일으로부터 벌써";
+    const afterDdayMeg = isMobile===true? "은하계 최고 미녀\n소현이의 생일으로부터": "은하계 최고 미녀 소현이의 생일으로부터 벌써";
     const Msg = dDayDate.diff(today, 'second') > 0 ? beforeDdayMeg : afterDdayMeg;  
-    console.log(afterDdayMeg)
     return (
         <MainTitleWrapper isMobile={isMobile}>
             <h1>Happy Sohyun Day!!</h1>

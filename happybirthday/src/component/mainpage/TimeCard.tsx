@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 
 const TimeCard : React.FC<TimeCardProps> = (props) => {
-    const {type,time} = props;
+    const {type,time,isMobile} = props;
     const [remainingTime, setRemainingTime] = useState<number>(0);
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -25,7 +25,7 @@ const TimeCard : React.FC<TimeCardProps> = (props) => {
       }, [type,time]);
 
     return (
-        <TimeCardWrapper>
+        <TimeCardWrapper isMobile={isMobile}>
             <div className="day-val">{String(remainingTime).padStart(2, "0")}</div>
             <div className="day-type">{type}</div>
         </TimeCardWrapper>
@@ -33,7 +33,7 @@ const TimeCard : React.FC<TimeCardProps> = (props) => {
 }
 export default TimeCard ;
 
-const TimeCardWrapper = styled.div`
+const TimeCardWrapper = styled.div<{isMobile:boolean}>`
 
 width: 120px;
 height : 120px;
@@ -56,7 +56,7 @@ justify-content: center;
         font-family: 'Inter';
         font-style: normal;
         font-weight: 800;
-        font-size: 1.5rem;
+        font-size: ${({isMobile}) => isMobile ? '1rem': '1.5rem'};
         color: #FEF57B;
     }
 `
