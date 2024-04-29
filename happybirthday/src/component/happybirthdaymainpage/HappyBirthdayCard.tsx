@@ -31,7 +31,7 @@ min-width: 300px;
 min-height: 350px;
 
 background-image: url(${({ imgUrl }) => imgUrl});
-background-color: white;
+background-color: black;
 background-size: cover;
 
 display: flex;
