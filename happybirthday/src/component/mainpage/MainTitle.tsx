@@ -3,14 +3,15 @@ import dayjs from "dayjs";
 import { DdayCardProps } from "../../types/mainpage/DdayCardProps";
 
 
-const MainTitle:React.FC<DdayCardProps> = ({dDay}) => {
+const MainTitle:React.FC<DdayCardProps> = ({dDay,isMobile}) => {
     const dDayDate = dayjs(dDay);
     const today = dayjs();
     const beforeDdayMeg = "은하계 최고 미녀 소현이의 생일까지 단";
-    const afterDdayMeg = "은하계 최고 미녀 소현이의 생일으로부터 벌써";
-    const Msg = dDayDate.diff(today, 'second') > 0 ? beforeDdayMeg : afterDdayMeg;    
+    const afterDdayMeg = isMobile===true? "은하계 최고 미녀 소현이의\n 생일으로부터 벌써": "은하계 최고 미녀 소현이의 생일으로부터 벌써";
+    const Msg = dDayDate.diff(today, 'second') > 0 ? beforeDdayMeg : afterDdayMeg;  
+    console.log(afterDdayMeg)
     return (
-        <MainTitleWrapper>
+        <MainTitleWrapper isMobile={isMobile}>
             <h1>Happy Sohyun Day!!</h1>
             <div className="time-left-msg">{Msg}</div>
         </MainTitleWrapper>
@@ -19,15 +20,15 @@ const MainTitle:React.FC<DdayCardProps> = ({dDay}) => {
 
 export default MainTitle;
 
-const MainTitleWrapper = styled.div`
+const MainTitleWrapper = styled.div<{isMobile:boolean}>`
 
     .time-left-msg{
         font-family: 'Inter';
         font-style: normal;
         font-weight: 900;
         font-size: 2rem;
-        color: #ffc809;    
-
+        color: ${({ isMobile }) => isMobile ? '#FCF6F5' : '#ffc809'};    
+        white-space: pre-line;
         text-align: center;
     }
     h1 {
@@ -38,6 +39,7 @@ const MainTitleWrapper = styled.div`
         line-height: 116px;
         text-align: center;
         color: #FFFFFF;
+
 
         @media screen and (max-width: 810px) {
             font-size: 3rem;

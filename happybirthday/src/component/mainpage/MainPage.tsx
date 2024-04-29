@@ -5,7 +5,7 @@ import ButtonCard from "./ButtonCard";
 import TopImgSection from "./TopImgSection";
 import MiddleImgSection from "./MiddleImgSection";
 import BottomImgSection from "./BottomImgSection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HappyBirthdayPage from "../happybirthdaymainpage/HappyBirthdayPage";
 import MusicPlayer from "./MusicPlayer";
 
@@ -14,20 +14,34 @@ const MainPage = () => {
     const dday = '2024-04-29'
     const password = '5670'
     const [musicPlaying, setMusicPlaying] = useState<boolean>(false); // 노래 재생 상태 선언 및 초기화
+    
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 650);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // 컴포넌트가 언마운트될 때 이벤트 리스너를 제거
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     return (
         <MainPageWrapper isPasswordConfirm={isPasswordConfirm}>
             {musicPlaying && <MusicPlayer src="/Root.mp3" />} {/* 노래 재생 상태일 때 MusicPlayer 컴포넌트 렌더링 */}
             {!isPasswordConfirm &&
             <>
                 <TopImgSection/>
-                <MiddleImgSection/>    
+                {!isMobile && <MiddleImgSection/>}    
                 <ContentWrapper>
-                    <MainTitle dDay={dday}/>
-                    <DdayCard dDay={dday}/>
+                    <MainTitle dDay={dday} isMobile={isMobile}/>
+                    <DdayCard dDay={dday} isMobile={isMobile}/>
                     <ButtonCard dDay={dday} password ={password} setIsPasswordConfirm={setIsPasswordConfirm} setMusicPlaying={setMusicPlaying} />                 
                 </ContentWrapper>   
-                <BottomImgSection/>
+                <BottomImgSection isMobile ={isMobile}/>
             </>
             }
             {isPasswordConfirm &&

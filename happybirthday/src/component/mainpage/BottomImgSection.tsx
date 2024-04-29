@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import { IMAGES_PATH } from "../../config/mainapge/paths";
-
-const BottomImgSection = () => {
+interface BottomImgSectionProps {
+    isMobile: boolean;
+}
+const BottomImgSection:React.FC<BottomImgSectionProps> = ({isMobile}) => {
     return(
         <BottomImgSectionWrapper>
             <img src={IMAGES_PATH.leftBottom}  alt="소현이 생일 축하 라년큘러스2" className="leftImg"></img>
-            <img src={IMAGES_PATH.rightBottom} alt="소현이 생일 축하 목련4" className="rightImg"></img>             
+            {!isMobile && <img src={IMAGES_PATH.rightBottom} alt="소현이 생일 축하 목련4" className="rightImg"></img> }      
         </BottomImgSectionWrapper>
     )
 }

@@ -5,7 +5,7 @@ const MiddleImgSection = () => {
     return(
         <MiddleImgSectionWrapper>
             <img src={IMAGES_PATH.leftMiddle}  alt="소현이 생일 축하 목련2" className="leftImg"></img>
-            <img src={IMAGES_PATH.rightMiddle} alt="소현이 생일 축하 목련3" className="rightImg"></img>           
+            <img src={IMAGES_PATH.rightMiddle} alt="소현이 생일 축하 목련3" className="rightImg"></img>       
         </MiddleImgSectionWrapper>
     )
 }
