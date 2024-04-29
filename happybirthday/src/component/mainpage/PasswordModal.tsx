@@ -111,7 +111,7 @@ const customStyles = {
         padding: '20px',
         backgroundColor: 'white',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        width: '20%', // 가로 크기 조정
+        width: '300px', // 가로 크기 조정
         height: 'auto%', // 세로 크기 조정
         overflow:'hidden',
     },

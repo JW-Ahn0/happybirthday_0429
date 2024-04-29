@@ -20,11 +20,11 @@ const OpenGiftButton: React.FC<OpenGiftButtonProps> = ({ isBirthdayAfter,passwor
     };
     return (
         <>
+            <PasswordModal msg="패스워드를 입력하세요" password={password} passwordModalOpen={alertModalOpen} setPasswordModalOpen={setAlertModalOpen} setIsPasswordConfirm={setIsPasswordConfirm} />
             <OpenGiftButtonWrapper onClick={openModal}>
                 {Msg}
             </OpenGiftButtonWrapper>
-            <PasswordModal msg="패스워드를 입력하세요" password={password} passwordModalOpen={alertModalOpen} setPasswordModalOpen={setAlertModalOpen} setIsPasswordConfirm={setIsPasswordConfirm} />
-            
+                        
             {/*!isBirthdayAfter && <AlertModal msg="생일이 아직 아니예요!" alertModalOpen={alertModalOpen} setAlertModalOpen={setAlertModalOpen} /> */}  
             {/*isBirthdayAfter &&   */} 
         </>

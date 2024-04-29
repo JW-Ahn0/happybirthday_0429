@@ -44,15 +44,42 @@ const CngrtModal = ({ modalOpen, setModalOpen,closeCngrtModal,uuid,setUuid }: mo
     function closeModal(){
         setModalOpen(false)
     }
+    function isSmallScreen(): Boolean {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 700;
+        }
+        return false;
+    }
    return (
     <CngrtMsgButtonWrapper>
         <Modal 
-            style={customStyles}
+            style={{
+                content: {
+                    borderRadius: '15px',
+                    top: '50%',
+                    left: '50%',
+                    right: 'auto',
+                    bottom: 'auto',
+                    marginRight: '-50%',
+                    transform: 'translate(-50%, -50%)',
+                    padding: '20px',
+                    backgroundColor: 'white',
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                    width: isSmallScreen() ? '350px' : '40%', // 가로 크기 조정
+                    height: 'auto', // 세로 크기 조정
+                    overflow:'hidden',
+                },
+                overlay: {
+                    zIndex: 1000,
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)'
+                }
+              }}
             isOpen={modalOpen} 
             onRequestClose={closeModal}
             shouldCloseOnOverlayClick={true} // 모달 바깥 영역 클릭 시 닫힘 설정
             ariaHideApp={false}
             onAfterOpen={handleAfterOpenFunc}
+
         >
             <ModalContent>
                 <h2>{cngrtModalTitle}</h2>
@@ -96,6 +123,7 @@ const CngrtModal = ({ modalOpen, setModalOpen,closeCngrtModal,uuid,setUuid }: mo
 export default CngrtModal;
 
 const CngrtMsgButtonWrapper = styled.div`
+height: 0;
 
 `
 const ModalContent = styled.div`
@@ -141,26 +169,12 @@ const ModalContent = styled.div`
     justify-content: end;
     gap: 10px;
 }
-`
-const customStyles = {
-    content: {
-        borderRadius: '15px',
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        padding: '20px',
-        backgroundColor: 'white',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        width: '40%', // 가로 크기 조정
-        height: 'auto', // 세로 크기 조정
-        overflow:'hidden',
-    },
-    overlay: {
-        zIndex: 1000,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)'
+
+.modal-size{
+    @media (max-width: 500px) {
+        width: 350px;
     }
-  };
+}
+`
+
   

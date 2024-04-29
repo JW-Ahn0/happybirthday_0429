@@ -21,11 +21,10 @@ export default ButtonCard
 
 
 const ButtonCardWrapper = styled.div`
-
 height : 35%;
 display:flex;
 flex-direction: row;
-gap : 40px;
+gap: 10px;
 justify-content:center;
 
 `
